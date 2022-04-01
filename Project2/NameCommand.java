@@ -5,7 +5,7 @@ public class NameCommand implements Command{
         if(robot.getName().equals("robot")) {
             System.out.println("Name your robot.");
             robot.setName(keyboard.next());
-            System.out.println("My name is " + robot.getDirection());
+            System.out.println("My name is " + robot.getName());
         }
     }
 
