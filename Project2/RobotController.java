@@ -6,15 +6,12 @@
  */
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 class RobotController{
     public static void main(String args[]){
         Robot robot1 = new Robot();
-        int forward;
-        // variables created to compound forward movement
-//        int move1 = 0;
-//        int move2 = 0;
-        String robotName = robot1.getName();
+        CommandRegistry registry = CommandRegistry.builder().build();
         String userInput;
         char command;
         Scanner keyboard = new Scanner(System.in);
@@ -22,19 +19,7 @@ class RobotController{
         do{
             userInput = keyboard.next();
             command = userInput.charAt(0);
-            if(command == 'f'){
-                new MoveCommand().execute(robot1, keyboard);
-            }else if(command == 'n'){
-                new NameCommand().execute(robot1, keyboard);
-            }else if(command == 't'){
-                new TurnRightCommand().execute(robot1, keyboard);
-            }else if(command == 'r'){
-                new ReportCommand().execute(robot1, keyboard);
-            }else if(command == 'e'){
-                new ExitCommand().execute(robot1, keyboard);
-            }else{
-                new UnknownCommand().execute(robot1, keyboard);
-            }
+            registry.getCommand(command).execute(robot1, keyboard);
         }
         while(command != 'e');
     } 

@@ -45,4 +45,9 @@ public class MoveCommand implements Command {
             System.out.println(robot.getName() + " moved forward " + forward);
         }
     }
+
+    @Override
+    public boolean isSupported(char command) {
+        return command == 'f';
+    }
 }

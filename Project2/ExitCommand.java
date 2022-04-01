@@ -5,4 +5,9 @@ public class ExitCommand implements Command{
     public void execute(Robot robot, Scanner keyboard) {
         Runtime.getRuntime().exit(1);
     }
+
+    @Override
+    public boolean isSupported(char command) {
+        return command == 'e';
+    }
 }

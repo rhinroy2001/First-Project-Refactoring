@@ -6,4 +6,9 @@ public class TurnRightCommand implements Command {
         robot.turnRight();
         System.out.println(robot.getName() + " is now facing " + robot.toString2());
     }
+
+    @Override
+    public boolean isSupported(char command) {
+        return command == 't';
+    }
 }
