@@ -37,12 +37,12 @@ public class CommandRegistry {
 
         public CommandRegistry build(){
             if(registry == null){
+                add(new UnknownCommand());
                 add(new MoveCommand());
                 add(new NameCommand());
                 add(new ExitCommand());
                 add(new ReportCommand());
                 add(new TurnRightCommand());
-                add(new UnknownCommand());
             }
             return new CommandRegistry(registry);
         }
