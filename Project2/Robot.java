@@ -5,14 +5,28 @@
  * CS 140-001
  */
 
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 class Robot{
+    private static Map<Character, String> directions = new HashMap<>();
+    static{
+        directions.put('n', "North");
+        directions.put('s', "South");
+        directions.put('e', "East");
+        directions.put('w', "West");
+    }
+    private static Map<Character, Character> turnRight = new HashMap<>();
+    static{
+        turnRight.put('n', 'e');
+        turnRight.put('s', 'w');
+        turnRight.put('e', 's');
+        turnRight.put('w', 'n');
+    }
     private String name;
     private int xPosition;
     private int yPosition;
     private char direction;
-    private String direction2;
 
     
     public Robot(){
@@ -20,7 +34,6 @@ class Robot{
         yPosition = 0;
         direction = 'n';
         name = "robot";
-        direction2 = null;
 
     }
 
@@ -77,53 +90,16 @@ class Robot{
     }
 
     public String turnRight(){
-        if(direction == 'n'){
-            direction = 'e';
-        }else if(direction == 'e'){
-            direction = 's';
-        }else if(direction == 's'){
-            direction = 'w';
-        }else if(direction == 'w'){
-            direction = 'n';
-        }
-
-        if(direction == 'n'){
-            direction2 = "North";
-        }else if(direction == 'e'){
-            direction2 = "East";
-        }else if(direction == 's'){
-            direction2 = "South";
-        }else if(direction == 'w'){
-            direction2 = "West";
-        }
-
-        return direction2; 
+        direction = turnRight.get(direction);
+        return getDirectionAsString();
     }
     // converts direction from a character to a string
-    public String toString2(){
-        if(direction == 'n'){
-            direction2 = "North";
-        }else if(direction == 'e'){
-            direction2 = "East";
-        }else if(direction == 's'){
-            direction2 = "South";
-        }else if(direction == 'w'){
-            direction2 = "West";
-        }
-        return direction2;
+    public String getDirectionAsString(){
+        return directions.get(direction);
     }
     // report function
     public String toString(){
-        if(direction == 'n'){
-            direction2 = "North";
-        }else if(direction == 'e'){
-            direction2 = "East";
-        }else if(direction == 's'){
-            direction2 = "South";
-        }else if(direction == 'w'){
-            direction2 = "West";
-        }
-        return name + " is at (" + xPosition + ", " + yPosition + ") facing " + direction2;
+        return name + " is at (" + xPosition + ", " + yPosition + ") facing " + getDirectionAsString();
 
     }
 
